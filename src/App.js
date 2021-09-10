@@ -1,60 +1,59 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
-import TodoCard from './components/todoCard';
+import TodoCard from './components/TodoCard';
+import TodoForm from './components/TodoForm';
 
 function App() {
   const [todoList, setList] = useState([
     {
-      username: "Rashid",
-      email: "rashidul.hasan@dsinnovators.com",
-      todo: "This is the task which I'll do ",
+      username: "User1",
+      email: "user.1@mail.com",
+      todo: "This is Todo 1 ",
+      saved: true,
+
     },
     {
-      username: "Emon",
-      email: "mahfuzur.emon@dsinnovators.com",
-      todo: "This is the task which he has already done last night ",
+      username: "User2",
+      email: "user.2@mail.com",
+      todo: "This is Todo 2",
+      saved: true,
     },
   ])
+
+  function createItem(todoItem){
+    setList([...todoList, todoItem]);
+  }
+
+  function modifyItem(todoItem,id){
+   const newList = [...todoList];
+   newList[id] = todoItem;
+   console.log(newList);
+   setList(newList); 
+  }
+
+  function deleteItem(id){
+    const newList = [...todoList];
+    newList.splice(id,1);
+    console.log(newList);
+    setList(newList); 
+  }
+
   return (
-    <div className="App bg-indigo-200 p-2">
+    <div className="App md:text-lg bg-indigo-200 p-8 pt-4 break-all lg:px-24 xl:px-56 2xl:px-72">
       <h1 className="bg-indigo-500 font-extrabold font-serif text-2xl rounded-xl my-1">
         Todo CRUD
       </h1>
 
-      <div className="bg-indigo-400 rounded-xl">
-        <form className="flex flex-col flex-wrap items-center">
-          <input
-            type="text"
-            placeholder="Username"
-            className="bg-green-100 rounded-md p-1 my-1 mt-2"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="bg-green-100 rounded-md p-1 my-1"
-          />
-          <input
-            type="email"
-            placeholder="Describe your TODO"
-            className="bg-green-100 rounded-md p-1 my-1"
-          />
-          <button
-            type="submit"
-
-            className="shadow-lg bg-blue-400 px-4 py-1 rounded-lg my-2 mt-1"
-          >
-            Create
-          </button>
-        </form>
-      </div>
+      <TodoForm saveAction={createItem}/>
 
       <h1 className="bg-indigo-500 font-bold font-serif text-base rounded-xl my-0 mt-6">
         Todo List
       </h1>
-      <div className="">
-        <TodoCard todoItem={todoList[0]}/>
-        <TodoCard todoItem={todoList[1]}/>
+      <div className="flex flex-col-reverse sm:flex-wrap md:flex-row">
+        {todoList.map((a,id)=>{
+          return a.saved?<TodoCard key={id} id={id} deleteItem={deleteItem} modifyItem={modifyItem} todoItem={a} />:<TodoForm key={id} id={id} saveAction={modifyItem} oldItem={a}/> ;
+        })}
       </div>
     </div>
   );
