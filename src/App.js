@@ -1,8 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
+import TodoCard from './components/todoCard';
 
 function App() {
+  const [todoList, setList] = useState([
+    {
+      username: "Rashid",
+      email: "rashidul.hasan@dsinnovators.com",
+      todo: "This is the task which I'll do ",
+    },
+    {
+      username: "Emon",
+      email: "mahfuzur.emon@dsinnovators.com",
+      todo: "This is the task which he has already done last night ",
+    },
+  ])
   return (
     <div className="App bg-indigo-200 p-2">
       <h1 className="bg-indigo-500 font-extrabold font-serif text-2xl rounded-xl my-1">
@@ -39,28 +52,9 @@ function App() {
       <h1 className="bg-indigo-500 font-bold font-serif text-base rounded-xl my-0 mt-6">
         Todo List
       </h1>
-      <div className="bg-indigo-200">
-        <div id="cardItem" className="bg-indigo-500 rounded-lg px-1 py-1 m-2">
-          <div className="px-7">
-            <h4 className="text-left py-0 font-bold my-0">
-              Rashidul Hasan
-            </h4>
-            <h6 className="font-medium text-left py-0 my-0">
-              rashidul.hasan@dsinnovators.com
-            </h6>
-          </div>
-          <p className="text-left bg-yellow-100 px-2 py-0 rounded-xl mx-2 my-2">
-              This is the task I'm going to do
-          </p>
-          <div>
-            <button className="shadow-lg bg-blue-400 px-3 py-0 rounded-lg my-0 mx-2 text-sm">
-              Change
-            </button>
-            <button className="shadow-lg bg-blue-400 px-3 py-0 rounded-lg my-0 mx-2 text-sm">
-              Delete
-            </button>
-        </div>
-        </div>
+      <div className="">
+        <TodoCard todoItem={todoList[0]}/>
+        <TodoCard todoItem={todoList[1]}/>
       </div>
     </div>
   );
