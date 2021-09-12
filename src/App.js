@@ -49,7 +49,7 @@ function App() {
       <h1 className="bg-indigo-500 font-bold font-serif text-base rounded-xl my-0 mt-6">
         Todo List
       </h1>
-      <div className="flex flex-col-reverse sm:flex-wrap md:flex-row">
+      <div className="flex flex-col-reverse sm:flex-wrap sm:flex-row">
         {todoList.map((a,id)=>{
           return a.saved?<TodoCard key={id} id={id} deleteItem={deleteItem} modifyItem={modifyItem} todoItem={a} />:<TodoForm key={id} id={id} saveAction={modifyItem} oldItem={a}/> ;
         })}
