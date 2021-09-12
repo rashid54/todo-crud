@@ -47,7 +47,7 @@ function App() {
       <TodoForm saveAction={createItem}/>
 
       <h1 className="bg-indigo-500 font-bold font-serif text-base rounded-xl my-0 mt-6">
-        Todo List
+        {(todoList.length<1)?'No':todoList.length} {(todoList.length>1)?'Todos':'Todo'} left
       </h1>
       <div className="flex flex-col-reverse sm:flex-wrap sm:flex-row">
         {todoList.map((a,id)=>{
