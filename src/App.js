@@ -4,7 +4,7 @@ import TodoCard from './components/TodoCard';
 import TodoForm from './components/TodoForm';
 
 function App() {
-  const [todoList, setList] = useState([
+  const initialTodo = [
     {
       username: "User1",
       email: "user.1@mail.com",
@@ -18,24 +18,20 @@ function App() {
       todo: "This is Todo 2",
       saved: true,
     },
-  ])
+  ]
+
+  const [todoList, setList] = useState(initialTodo)
 
   function createItem(todoItem){
-    setList([...todoList, todoItem]);
+    setList(todoList.concat(todoItem));
   }
 
   function modifyItem(todoItem,id){
-   const newList = [...todoList];
-   newList[id] = todoItem;
-   console.log(newList);
-   setList(newList); 
+   setList(todoList.map((val,idx)=>((id===idx)?todoItem:val)));
   }
 
   function deleteItem(id){
-    const newList = [...todoList];
-    newList.splice(id,1);
-    console.log(newList);
-    setList(newList); 
+    setList(todoList.filter((val,idx)=>(id!==idx)));
   }
 
   return (

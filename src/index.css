@@ -1,10 +1,4 @@
 /* ./src/index.css */
-
-
-
-.card-width {
-    width: 23.5%;
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
