@@ -8,7 +8,7 @@ function TodoCard({todoItem,deleteItem,modifyItem,id}){
     }
 
     return (
-        <div id="cardItem" className="bg-indigo-500 rounded-lg px-1 py-1 m-2"
+        <div id="cardItem" className="bg-indigo-500 rounded-lg px-1 py-1 m-2 flex-grow"
         >
           <h4 className="text-left py-0 px-7 font-bold my-0">
             {todoItem.username}
