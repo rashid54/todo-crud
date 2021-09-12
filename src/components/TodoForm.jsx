@@ -17,7 +17,7 @@ function TodoForm({saveAction, id, oldItem}){
     function handleSubmit(e){
         e.preventDefault();
         saveAction({...todoItem,saved:true}, id);
-        // setTodoItem({username:"", email:"", todo:"", saved:false,});
+        setTodoItem({username:"", email:"", todo:"", saved:false,});
     }
 
     return (
