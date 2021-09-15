@@ -1,21 +1,8 @@
-import React, { useReducer, useState } from 'react'
+import React, { useReducer } from 'react'
+import TodosReducer from './TodosReducer';
 
 
 export const TodosContext = React.createContext();
-export const TodosCommands = { ADD: "add", DELETE: "delete", MODIFY: "modify" };
-
-function todosReducer(todos, { type, todoItem, id }) {
-    switch (type) {
-        case TodosCommands.ADD:
-            return todos.concat(todoItem);
-        case TodosCommands.MODIFY:
-            return todos.map((val, idx) => ((id === idx) ? { ...todoItem } : val));
-        case TodosCommands.DELETE:
-            return todos.filter((_val, idx) => (id !== idx));
-        default:
-            return todos;
-    }
-}
 
 function TodosProvider({ children }) {
     const initialTodos = [
@@ -34,7 +21,7 @@ function TodosProvider({ children }) {
         },
     ];
 
-    const [todos, todosDispatch] = useReducer(todosReducer, initialTodos);
+    const [todos, todosDispatch] = useReducer(TodosReducer, initialTodos);
 
     return (
         <TodosContext.Provider value={[todos, todosDispatch]}>

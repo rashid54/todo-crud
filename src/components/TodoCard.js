@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TodosCommands, TodosContext } from '../contexts/TodosProvider';
+import { TodosContext } from '../contexts/TodosProvider';
 
 
 function TodoCard({ todoItem: { username, email, todo }, id }) {
@@ -7,12 +7,12 @@ function TodoCard({ todoItem: { username, email, todo }, id }) {
 
   function handleEdit(e) {
     e.preventDefault();
-    todosDispatch({ id, todoItem: { username, email, todo, updatingItem: true }, type: TodosCommands.MODIFY });
+    todosDispatch({ id, todoItem: { username, email, todo, updatingItem: true } });
   }
 
   function handleDelete(e) {
     e.preventDefault();
-    todosDispatch({ id, type: TodosCommands.DELETE });
+    todosDispatch({ id });
   }
 
   return (

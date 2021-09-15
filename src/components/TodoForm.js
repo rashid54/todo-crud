@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { TodosCommands, TodosContext } from '../contexts/TodosProvider';
+import { TodosContext } from '../contexts/TodosProvider';
 
 
 function TodoForm({ id, oldItem }) {
@@ -20,11 +20,11 @@ function TodoForm({ id, oldItem }) {
 
     if (oldItem) {
       // Updates the Todo
-      todosDispatch({ id, todoItem: { ...todoItem, updatingItem: false }, type: TodosCommands.MODIFY });
+      todosDispatch({ id, todoItem: { ...todoItem, updatingItem: false } });
     }
     else {
       // Creates a new Todo
-      todosDispatch({ todoItem, type: TodosCommands.ADD });
+      todosDispatch({ todoItem });
       setTodoItem({ username: "", email: "", todo: "", updatingItem: false, });
     }
   }
