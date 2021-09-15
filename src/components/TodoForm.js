@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { TodosContext } from '../contexts/TodosProvider';
 
 
-function TodoForm({ saveAction, id, oldItem }) {
+function TodoForm({id, oldItem }) {
+  const [todos, setTodos] = useContext(TodosContext);
   const [todoItem, setTodoItem] = useState(oldItem ? oldItem : {
     username: "",
     email: "",
     todo: "",
-    updatingItem: true,
+    updatingItem: false,
   });
 
   function handleChange(e) {
@@ -15,11 +17,19 @@ function TodoForm({ saveAction, id, oldItem }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    saveAction({ ...todoItem, updatingItem: false }, id);
-    setTodoItem({ username: "", email: "", todo: "", updatingItem: true, });
+    
+    if(oldItem){
+      // Updates the Todo
+      setTodos(todos.map((val,idx)=>((id===idx)?{...todoItem, updatingItem: false}:val)));
+    }
+    else{
+      // Creates a new Todo
+      setTodos(todos.concat(todoItem));
+      setTodoItem({ username: "", email: "", todo: "", updatingItem: false, });
+    }
   }
 
-  console.log(todoItem);
+  console.log("Rendering TodoForm");
   return (
     <div className="bg-indigo-400 rounded-xl m-2 px-2">
       <form className="flex flex-col flex-wrap items-center" onSubmit={handleSubmit}>
