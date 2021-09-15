@@ -19,8 +19,9 @@ function TodoForm({ saveAction, id, oldItem }) {
     setTodoItem({ username: "", email: "", todo: "", updatingItem: true, });
   }
 
+  console.log(todoItem);
   return (
-    <div className="bg-indigo-400 rounded-xl m-2">
+    <div className="bg-indigo-400 rounded-xl m-2 px-2">
       <form className="flex flex-col flex-wrap items-center" onSubmit={handleSubmit}>
         <input
           type="text"

@@ -4,7 +4,7 @@ import React from 'react';
 function TodoCard({ todoItem: { username, email, todo }, deleteItem, modifyItem, id }) {
 
   function handleEdit(e) {
-    modifyItem({ username: { username }, email: { email }, todo: { todo }, saved: true }, id);
+    modifyItem({ username, email, todo, updatingItem: true }, id);
   }
 
   return (
@@ -19,7 +19,7 @@ function TodoCard({ todoItem: { username, email, todo }, deleteItem, modifyItem,
       <p className="text-left bg-yellow-100 px-2 py-0 rounded-xl mx-2 my-2">
         {todo}
       </p>
-      <div>
+      <div className="text-center">
         <button onClick={handleEdit} className="hover:-translate-y-0.5 transform transition hover:bg-blue-300 shadow-lg bg-blue-400 px-3 py-0 rounded-lg my-0 mx-2 text-sm">
           Edit
         </button>
