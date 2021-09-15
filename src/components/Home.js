@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { TodosContext } from '../contexts/TodosProvider';
 import TodoCard from './TodoCard';
 import TodoForm from './TodoForm';
@@ -16,11 +16,11 @@ function Home() {
       <TodoForm />
 
       <h1 className="bg-indigo-500 font-bold font-serif text-base rounded-xl my-0 mt-6 text-center">
-        {(todos.length<1)?'No':todos.length} {(todos.length>1)?'Todos':'Todo'} left
+        {(todos.length < 1) ? 'No' : todos.length} {(todos.length > 1) ? 'Todos' : 'Todo'} left
       </h1>
       <div className="flex flex-col-reverse sm:flex-wrap sm:flex-row">
-        {todos.map((a,id)=>{
-          return a.updatingItem?<TodoForm key={id} id={id} oldItem={a}/>:<TodoCard key={id} id={id} todoItem={a} /> ;
+        {todos.map((a, id) => {
+          return a.updatingItem ? <TodoForm key={id} id={id} oldItem={a} /> : <TodoCard key={id} id={id} todoItem={a} />;
         })}
       </div>
     </div>

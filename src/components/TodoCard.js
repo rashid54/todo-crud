@@ -3,14 +3,16 @@ import { TodosCommands, TodosContext } from '../contexts/TodosProvider';
 
 
 function TodoCard({ todoItem: { username, email, todo }, id }) {
-  const [todos, todosDispatch] = useContext(TodosContext);
+  const [_todos, todosDispatch] = useContext(TodosContext);
 
-  function handleEdit(e){
-    todosDispatch({id, todoItem: {username, email, todo, updatingItem: true}, type: TodosCommands.MODIFY});
+  function handleEdit(e) {
+    e.preventDefault();
+    todosDispatch({ id, todoItem: { username, email, todo, updatingItem: true }, type: TodosCommands.MODIFY });
   }
 
-  function handleDelete(e){
-    todosDispatch({id, type: TodosCommands.DELETE});
+  function handleDelete(e) {
+    e.preventDefault();
+    todosDispatch({ id, type: TodosCommands.DELETE });
   }
 
   return (

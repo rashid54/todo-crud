@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { TodosCommands, TodosContext } from '../contexts/TodosProvider';
 
 
-function TodoForm({id, oldItem }) {
-  const [todos, todosDispatch] = useContext(TodosContext);
+function TodoForm({ id, oldItem }) {
+  const [_todos, todosDispatch] = useContext(TodosContext);
   const [todoItem, setTodoItem] = useState(oldItem ? oldItem : {
     username: "",
     email: "",
@@ -17,14 +17,14 @@ function TodoForm({id, oldItem }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
-    if(oldItem){
+
+    if (oldItem) {
       // Updates the Todo
-      todosDispatch({id, todoItem: {...todoItem, updatingItem: false}, type: TodosCommands.MODIFY});
+      todosDispatch({ id, todoItem: { ...todoItem, updatingItem: false }, type: TodosCommands.MODIFY });
     }
-    else{
+    else {
       // Creates a new Todo
-      todosDispatch({todoItem, type: TodosCommands.ADD});
+      todosDispatch({ todoItem, type: TodosCommands.ADD });
       setTodoItem({ username: "", email: "", todo: "", updatingItem: false, });
     }
   }
