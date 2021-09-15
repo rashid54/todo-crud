@@ -7,7 +7,6 @@ import TodoForm from './TodoForm';
 function Home() {
   const [todos] = useContext(TodosContext);
 
-  console.log("Rendering Home");
   return (
     <div className="App md:text-lg bg-indigo-200 p-8 pt-4 break-all lg:px-24 xl:px-56 2xl:px-72 text-center">
       <h1 className="bg-indigo-500 font-extrabold font-serif text-2xl rounded-xl my-1">

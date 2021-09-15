@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { TodosContext } from '../contexts/TodosProvider';
+import { TodosCommands, TodosContext } from '../contexts/TodosProvider';
 
 
 function TodoForm({id, oldItem }) {
-  const [todos, setTodos] = useContext(TodosContext);
+  const [todos, todosDispatch] = useContext(TodosContext);
   const [todoItem, setTodoItem] = useState(oldItem ? oldItem : {
     username: "",
     email: "",
@@ -20,16 +20,15 @@ function TodoForm({id, oldItem }) {
     
     if(oldItem){
       // Updates the Todo
-      setTodos(todos.map((val,idx)=>((id===idx)?{...todoItem, updatingItem: false}:val)));
+      todosDispatch({id, todoItem: {...todoItem, updatingItem: false}, type: TodosCommands.MODIFY});
     }
     else{
       // Creates a new Todo
-      setTodos(todos.concat(todoItem));
+      todosDispatch({todoItem, type: TodosCommands.ADD});
       setTodoItem({ username: "", email: "", todo: "", updatingItem: false, });
     }
   }
 
-  console.log("Rendering TodoForm");
   return (
     <div className="bg-indigo-400 rounded-xl m-2 px-2">
       <form className="flex flex-col flex-wrap items-center" onSubmit={handleSubmit}>

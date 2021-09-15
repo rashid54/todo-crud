@@ -1,26 +1,18 @@
 import React, { useContext } from 'react';
-import { TodosContext } from '../contexts/TodosProvider';
+import { TodosCommands, TodosContext } from '../contexts/TodosProvider';
 
 
 function TodoCard({ todoItem: { username, email, todo }, id }) {
-  const [todos, setTodos] = useContext(TodosContext);
+  const [todos, todosDispatch] = useContext(TodosContext);
 
   function handleEdit(e){
-    setTodos(todos.map((val,idx)=>{
-      if(id===idx){
-        return {...val,updatingItem: true};
-      }
-      else {
-        return {...val,updatingItem: false};
-      }
-    }));
+    todosDispatch({id, todoItem: {username, email, todo, updatingItem: true}, type: TodosCommands.MODIFY});
   }
 
   function handleDelete(e){
-    setTodos(todos.filter((val,idx)=>(id!==idx)));
+    todosDispatch({id, type: TodosCommands.DELETE});
   }
 
-  console.log("Rendering TodoCard");
   return (
     <div id="cardItem" className="bg-indigo-500 rounded-lg px-1 py-1 m-2 flex-grow"
     >
