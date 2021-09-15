@@ -5,22 +5,23 @@ import { TodosContext } from '../contexts/TodosProvider';
 function TodoCard({ todoItem: { username, email, todo }, id }) {
   const [todos, setTodos] = useContext(TodosContext);
 
-  function handleEdit(e){
-    setTodos(todos.map((val,idx)=>{
-      if(id===idx){
-        return {...val,updatingItem: true};
+  function handleEdit(e) {
+    e.preventDefault();
+    setTodos(todos.map((val, idx) => {
+      if (id === idx) {
+        return { ...val, updatingItem: true };
       }
       else {
-        return {...val,updatingItem: false};
+        return { ...val, updatingItem: false };
       }
     }));
   }
 
-  function handleDelete(e){
-    setTodos(todos.filter((val,idx)=>(id!==idx)));
+  function handleDelete(e) {
+    e.preventDefault();
+    setTodos(todos.filter((_val, idx) => (id !== idx)));
   }
 
-  console.log("Rendering TodoCard");
   return (
     <div id="cardItem" className="bg-indigo-500 rounded-lg px-1 py-1 m-2 flex-grow"
     >
