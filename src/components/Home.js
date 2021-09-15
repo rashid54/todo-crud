@@ -22,14 +22,17 @@ function Home() {
   const [todos, setTodos] = useState(initialTodos)
 
   function createItem(todoItem){
+    // add new Todo
     setTodos(todos.concat(todoItem));
   }
 
   function modifyItem(todoItem,id){
+    // modify existing Todo 
    setTodos(todos.map((val,idx)=>((id===idx)?todoItem:val)));
   }
 
   function deleteItem(id){
+    // delete exiting todo
     setTodos(todos.filter((val,idx)=>(id!==idx)));
   }
 
