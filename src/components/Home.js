@@ -19,8 +19,8 @@ function Home() {
         {(todos.length < 1) ? 'No' : todos.length} {(todos.length > 1) ? 'Todos' : 'Todo'} left
       </h1>
       <div className="flex flex-col-reverse sm:flex-wrap sm:flex-row">
-        {todos.map((a, id) => {
-          return a.updatingItem ? <TodoForm key={id} id={id} oldItem={a} /> : <TodoCard key={id} id={id} todoItem={a} />;
+        {todos.map((todo, id) => {
+          return todo.updatingItem ? <TodoForm key={id} id={id} oldItem={todo} /> : <TodoCard key={id} id={id} todoItem={todo} />;
         })}
       </div>
     </div>

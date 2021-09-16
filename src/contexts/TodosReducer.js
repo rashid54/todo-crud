@@ -1,15 +1,16 @@
-export default function TodosReducer(todos, {todoItem, id}){
-    if(todoItem && id >=0){
-        // modify todo
-        return todos.map((val,idx)=>((id===idx)?{...todoItem}:val));
-    }
-    else if(todoItem){
-        // add todo
-        return todos.concat(todoItem);
-    }
-    else {
-        // delete todo
-        return todos.filter((_val,idx)=>(id!==idx));
-    }
+export const TodosCommands = { ADD: "add", DELETE: "delete", MODIFY: "modify" };
 
+function TodosReducer(todos, { type, todoItem, id }) {
+    switch (type) {
+        case TodosCommands.ADD:
+            return todos.concat(todoItem);
+        case TodosCommands.MODIFY:
+            return todos.map((val, idx) => ((id === idx) ? { ...todoItem } : val));
+        case TodosCommands.DELETE:
+            return todos.filter((_val, idx) => (id !== idx));
+        default:
+            return todos;
+    }
 }
+
+export default TodosReducer;
